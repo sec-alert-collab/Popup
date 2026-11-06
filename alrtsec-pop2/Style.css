@@ -1,0 +1,347 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    background-image: url('https://images.seeklogo.com/logo-png/9/1/microsoft-windows-logo-png_seeklogo-92316.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+}
+
+/* Overlay semi-transparent pour lisibilité */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.15);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Scrolling Banners */
+.scrolling-banner {
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 50;
+}
+
+.top-banner {
+    order: -1;
+}
+
+.bottom-banner {
+    order: 1;
+}
+
+.banner-content {
+    display: flex;
+    gap: 20px;
+    animation: scroll-left 20s linear infinite;
+}
+
+.banner-content img {
+    height: 200px;
+    width: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.bottom-banner .banner-content {
+    animation: scroll-right 20s linear infinite;
+}
+
+@keyframes scroll-left {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes scroll-right {
+    from {
+        transform: translateX(-50%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* Alert Popup - FULLSCREEN */
+.alert-popup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+    height: calc(100vh - 200px);
+    padding: 40px;
+    background: transparent;
+    backdrop-filter: blur(0px);
+    border-radius: 0;
+    box-shadow: none;
+    text-align: center;
+    position: relative;
+    z-index: 100;
+}
+
+/* Side Images */
+.side-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.side-image img {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    animation: rotate-scale 6s infinite ease-in-out;
+}
+
+.left-image img {
+    animation: rotate-scale-left 6s infinite ease-in-out;
+}
+
+.right-image img {
+    animation: rotate-scale-right 6s infinite ease-in-out;
+}
+
+@keyframes rotate-scale-left {
+    0%, 100% {
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        transform: rotate(-15deg) scale(1.1);
+    }
+}
+
+@keyframes rotate-scale-right {
+    0%, 100% {
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        transform: rotate(15deg) scale(1.1);
+    }
+}
+
+/* Popup Content */
+.popup-content {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+}
+
+/* Pulsating Icon */
+.pulsating-icon {
+    font-size: 100px;
+    margin-bottom: 30px;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.7;
+    }
+}
+
+/* Title */
+.alert-popup h1 {
+    font-size: 48px;
+    margin-bottom: 25px;
+    color: #333;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+}
+
+/* Warning Text */
+.warning-text {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.warning-text strong {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Contact Text */
+.contact-text {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+/* Contact Button */
+.contact-button {
+    display: inline-block;
+    padding: 18px 50px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.contact-button:hover {
+    background-color: #555;
+    transform: scale(1.08);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.contact-button:active {
+    transform: scale(0.98);
+}
+
+/* Audio Controls */
+.audio-controls {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.audio-btn {
+    padding: 14px 28px;
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 68, 68, 0.3);
+    font-family: Arial, sans-serif;
+}
+
+.audio-btn:hover {
+    background-color: #cc0000;
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 68, 68, 0.4);
+}
+
+.audio-btn:active {
+    transform: scale(0.98);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .alert-popup {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .side-image {
+        display: none;
+    }
+
+    .alert-popup h1 {
+        font-size: 40px;
+    }
+
+    .warning-text {
+        font-size: 18px;
+    }
+
+    .contact-text {
+        font-size: 16px;
+    }
+
+    .contact-button {
+        font-size: 18px;
+        padding: 15px 40px;
+    }
+
+    .audio-btn {
+        font-size: 14px;
+        padding: 12px 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .alert-popup {
+        padding: 20px;
+        gap: 20px;
+        height: auto;
+    }
+
+    .popup-content {
+        max-width: 100%;
+    }
+
+    .alert-popup h1 {
+        font-size: 32px;
+    }
+
+    .pulsating-icon {
+        font-size: 80px;
+        margin-bottom: 20px;
+    }
+
+    .warning-text {
+        font-size: 16px;
+    }
+
+    .contact-text {
+        font-size: 14px;
+    }
+
+    .contact-button {
+        font-size: 16px;
+        padding: 12px 30px;
+    }
+
+    .audio-controls {
+        margin-top: 20px;
+        gap: 10px;
+    }
+
+    .audio-btn {
+        font-size: 13px;
+        padding: 10px 20px;
+    }
+
+    .scrolling-banner {
+        height: 80px;
+    }
+
+    .banner-content img {
+        height: 150px;
+    }
+}
